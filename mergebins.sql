@@ -41,6 +41,11 @@ INSERT INTO allbins(the_geom, source, rub_sched, rec_sched, name)
 SELECT the_geom, 'Ballarat', waste, recycle, collection 
 FROM ballarat;
 
+\echo "Manningham"
+INSERT INTO allbins(the_geom, source, rub_sched, rec_sched,grn_sched, name,missed_ph,grn_cmt)
+SELECT the_geom, 'Manningham', rub_sched, rec_sched, grn_sched,waste,missed_ph,grn_cmt
+FROM manningham;
+
 \echo "Wyndham"
 INSERT INTO allbins(the_geom, source, rub_day, rub_start, rub_weeks, name)
 SELECT the_geom, 
