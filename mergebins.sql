@@ -52,10 +52,10 @@ FROM manningham;
 -- Recycling: 24th April
 -- Green Waste: 17th April
 INSERT INTO allbins(the_geom, source, rub_day, rub_start, rub_weeks, rec_day, rec_start, rec_weeks, grn_day, grn_start, grn_weeks, name)
-SELECT the_geom, 
+SELECT DISTINCT the_geom, 
 'Wyndham' AS source,
-(regexp_split_to_array(description, '<[^>]+>'))[19] AS rub_day,
-CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
+day AS rub_day,
+CASE day
   WHEN 'Monday' THEN '2015-04-06'::date
   WHEN 'Tuesday' THEN '2015-04-07'::date
   WHEN 'Wednesday' THEN '2015-04-08'::date
@@ -66,27 +66,27 @@ CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
 END AS rub_start, 
 '1' AS rub_weeks, 
 
-(regexp_split_to_array(description, '<[^>]+>'))[19] AS rec_day,
-CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
-  WHEN 'Monday' THEN '2015-03-30'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Tuesday' THEN '2015-03-31'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Wednesday' THEN '2015-04-01'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Thursday' THEN '2015-04-02'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Friday' THEN '2015-04-03'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Saturday' THEN '2015-04-04'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Sunday' THEN '2015-04-05'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+day AS rec_day,
+CASE day
+  WHEN 'Monday' THEN '2015-03-30'::date + 7 * week::int
+  WHEN 'Tuesday' THEN '2015-03-31'::date + 7 * week::int
+  WHEN 'Wednesday' THEN '2015-04-01'::date + 7 * week::int
+  WHEN 'Thursday' THEN '2015-04-02'::date + 7 * week::int
+  WHEN 'Friday' THEN '2015-04-03'::date + 7 * week::int
+  WHEN 'Saturday' THEN '2015-04-04'::date + 7 * week::int
+  WHEN 'Sunday' THEN '2015-04-05'::date + 7 * week::int
 END AS rec_start, 
 '2' AS rec_weeks, 
-(regexp_split_to_array(description, '<[^>]+>'))[19] AS grn_day,
-CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
-  WHEN 'Monday' THEN '2015-04-06'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Tuesday' THEN '2015-04-07'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Wednesday' THEN '2015-04-08'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Thursday' THEN '2015-04-09'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Friday' THEN '2015-04-10'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Saturday' THEN '2015-04-11'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
-  WHEN 'Sunday' THEN '2015-04-12'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+day AS grn_day,
+CASE day
+  WHEN 'Monday' THEN '2015-04-06'::date + 7 * week::int
+  WHEN 'Tuesday' THEN '2015-04-07'::date + 7 * week::int
+  WHEN 'Wednesday' THEN '2015-04-08'::date + 7 * week::int
+  WHEN 'Thursday' THEN '2015-04-09'::date + 7 * week::int
+  WHEN 'Friday' THEN '2015-04-10'::date + 7 * week::int
+  WHEN 'Saturday' THEN '2015-04-11'::date + 7 * week::int
+  WHEN 'Sunday' THEN '2015-04-12'::date + 7 * week::int
 END AS grn_start, 
 '2' AS grn_weeks, -- I think they're all weekly.
-concat('Area ', (regexp_split_to_array(description, '<[^>]+>'))[13]) AS name
+concat('Area ', area_no) AS name
 FROM wyndham;
