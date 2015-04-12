@@ -88,6 +88,5 @@ CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
   WHEN 'Sunday' THEN '2015-04-12'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
 END AS grn_start, 
 '2' AS grn_weeks, -- I think they're all weekly.
-NULL AS rub_start, -- This gives week "1" or "2" but what do I do with that? (regexp_split_to_array(description, '<[^>]+>'))[25],
 concat('Area ', (regexp_split_to_array(description, '<[^>]+>'))[13]) AS name
 FROM wyndham;
