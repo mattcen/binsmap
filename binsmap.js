@@ -3,9 +3,9 @@ TODO:
 - calculate "next bin night"
 - special handling for the day after bin night - maybe it's not too late?
 - when you zoom in far you lose your marker
-- clickable areas
+- clickable areas - maybe instead of dragging marker
 - have layer control always open?
-
+- update spec to allow per-type info
 */
 var layer;
 var map;
