@@ -18,12 +18,12 @@ WHERE rub_weeks IS NULL;
 
 UPDATE allbins
 SET rec_weeks=(regexp_matches(rec_sched,'\/P(\d)W'))[1]
-WHERE rec_start IS NULL;
+WHERE rec_weeks IS NULL;
 
 
 UPDATE allbins
 SET grn_weeks=(regexp_matches(grn_sched,'\/P(\d)W'))[1]
-WHERE grn_start IS NULL;
+WHERE grn_weeks IS NULL;
 
 --hw_weeks=(regexp_matches(hw_sched,'\/P(\d)W'))[1]
 
@@ -34,8 +34,8 @@ WHERE rub_day IS NULL;
 
 UPDATE allbins
 SET rec_day=trim(to_char(rec_start::date,'Day'))
-WHERE rec_start IS NULL;
+WHERE rec_day IS NULL;
 
 UPDATE allbins
 SET grn_day=trim(to_char(grn_start::date,'Day'))
-WHERE grn_start IS NULL;
+WHERE grn_day IS NULL;
