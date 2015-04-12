@@ -25,4 +25,6 @@ ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 wyndham.kml -overwr
 
 psql -d $DBNAME < mergebins.sql
 psql -d $DBNAME < cleanbins.sql
+./dumpbins.sh
 date
+
