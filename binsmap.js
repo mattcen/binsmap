@@ -1,8 +1,11 @@
 /*
 TODO:
-- have multiple topojsons?
 - calculate "next bin night"
-- fix Wyndham rubbish properties
+- special handling for the day after bin night - maybe it's not too late?
+- when you zoom in far you lose your marker
+- clickable areas
+- have layer control always open?
+
 */
 var layer;
 var map;
@@ -29,7 +32,11 @@ function isBinNight(startdate, weekinterval) {
     var now = new Date();
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     //var today = new Date(now.getFullYear(), now.getMonth(), 14);
-    var tomorrow = new Date(today.getTime() + 86400000);
+    var tomorrow = today;
+    // If it's after 8am, then we're talking about tomorrow's bin night.
+    if (now.getHours() > 8) {
+       tomorrow = new Date(today.getTime() + 86400000);
+    }   
     // loading a UTC YYYY-MM-DD date means getting UTC midnight. We don't want that.
     then = new Date(startdate.replace(/-/g, '/'));
     if (then.getDay() === tomorrow.getDay()) {
