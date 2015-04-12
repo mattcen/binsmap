@@ -68,24 +68,24 @@ END AS rub_start,
 
 (regexp_split_to_array(description, '<[^>]+>'))[19] AS rec_day,
 CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
-  WHEN 'Monday' THEN '2015-03-30'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Tuesday' THEN '2015-03-31'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Wednesday' THEN '2015-04-01'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Thursday' THEN '2015-04-02'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Friday' THEN '2015-04-03'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Saturday' THEN '2015-04-04'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Sunday' THEN '2015-04-05'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
+  WHEN 'Monday' THEN '2015-03-30'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Tuesday' THEN '2015-03-31'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Wednesday' THEN '2015-04-01'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Thursday' THEN '2015-04-02'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Friday' THEN '2015-04-03'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Saturday' THEN '2015-04-04'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Sunday' THEN '2015-04-05'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
 END AS rec_start, 
 '2' AS rec_weeks, 
 (regexp_split_to_array(description, '<[^>]+>'))[19] AS grn_day,
 CASE (regexp_split_to_array(description, '<[^>]+>'))[19]
-  WHEN 'Monday' THEN '2015-04-06'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Tuesday' THEN '2015-04-07'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Wednesday' THEN '2015-04-08'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Thursday' THEN '2015-04-09'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Friday' THEN '2015-04-10'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Saturday' THEN '2015-04-11'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
-  WHEN 'Sunday' THEN '2015-04-12'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]
+  WHEN 'Monday' THEN '2015-04-06'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Tuesday' THEN '2015-04-07'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Wednesday' THEN '2015-04-08'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Thursday' THEN '2015-04-09'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Friday' THEN '2015-04-10'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Saturday' THEN '2015-04-11'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
+  WHEN 'Sunday' THEN '2015-04-12'::date + 7 * (regexp_split_to_array(description, '<[^>]+>'))[25]::int
 END AS grn_start, 
 '2' AS grn_weeks, -- I think they're all weekly.
 NULL AS rub_start, -- This gives week "1" or "2" but what do I do with that? (regexp_split_to_array(description, '<[^>]+>'))[25],
