@@ -224,11 +224,11 @@ $(function() {
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
 
-    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tilelive/binzones/{z}/{x}/{y}.png?updated=1', { 
+    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tilelive/binzones/{z}/{x}/{y}.png?updated=2', { 
         maxZoom: 18, attribution: attribution });
-    tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=1', { 
+    tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=2', { 
         maxZoom: 18, attribution: attribution });
-    tiles['Green waste'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-green/{z}/{x}/{y}.png?updated=1', { 
+    tiles['Green waste'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-green/{z}/{x}/{y}.png?updated=2', { 
         maxZoom: 18, attribution: attribution });
     tiles['Mapbox'] = L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png', {
         attribution: 'Mapbox, OpenStreetMap'});
