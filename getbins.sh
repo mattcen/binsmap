@@ -4,3 +4,6 @@ wget -O geelong.geojson 'http://data.gov.au/geoserver/geelong-garbage-collection
 wget -O golden_plains.geojson 'http://data.gov.au/dataset/3ce108f9-ccbd-4ff9-8672-956d54dfe384/resource/c55095d7-1252-4722-83de-bde653335787/download/gpsgarbage.json'
 wget -O wyndham.kml 'http://data.gov.au/dataset/c1b391aa-2990-4f12-9b3d-31ef9f72e24e/resource/ad28f1db-e81e-449b-a0ba-aa29baab4d71/download/wastecollectionzoneswyndham.kml'
 wget -O manningham.geojson 'http://data.gov.au/geoserver/manningham-waste-collection/wfs?request=GetFeature&typeName=adb30341_4703_4050_b18b_5288e3cb0ba7&outputFormat=json'
+
+wget -O colac_otway.geojson 'http://data.gov.au/geoserver/colac-otway-shire-waste-collection/wfs?request=GetFeature&typeName=a7de2474_abb0_4e18_a631_d5550962c89e&outputFormat=json'
+

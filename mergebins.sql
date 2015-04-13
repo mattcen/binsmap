@@ -90,3 +90,45 @@ END AS grn_start,
 '2' AS grn_weeks, -- I think they're all weekly.
 concat('Area ', area_no) AS name
 FROM wyndham;
+
+\echo "Colac Otway"
+-- Monday Week 1 = April 6 for recyclables, April 13 for green waste
+INSERT INTO allbins(the_geom, source, rub_day, rub_start, rub_weeks, rec_day, rec_start, rec_weeks, grn_day, grn_start, grn_weeks, name)
+SELECT DISTINCT the_geom, 
+'Colac Otway' AS source,
+split_part(dayweek,' ', 1) AS rub_day,
+CASE split_part(dayweek,' ', 1)
+  WHEN 'Monday' THEN '2015-04-06'::date
+  WHEN 'Tuesday' THEN '2015-04-07'::date
+  WHEN 'Wednesday' THEN '2015-04-08'::date
+  WHEN 'Thursday' THEN '2015-04-09'::date
+  WHEN 'Friday' THEN '2015-04-10'::date
+  WHEN 'Saturday' THEN '2015-04-11'::date -- no saturday or sunday fwiw
+  WHEN 'Sunday' THEN '2015-04-12'::date
+END AS rub_start, 
+'1' AS rub_weeks, 
+
+split_part(dayweek,' ', 1) AS rec_day,
+CASE split_part(dayweek,' ', 1)
+  WHEN 'Monday' THEN '2015-03-30'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Tuesday' THEN '2015-03-31'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Wednesday' THEN '2015-04-01'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Thursday' THEN '2015-04-02'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Friday' THEN '2015-04-03'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Saturday' THEN '2015-04-04'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Sunday' THEN '2015-04-05'::date + 7 * (right(dayweek, 1)::int)
+END AS rec_start, 
+'2' AS rec_weeks, 
+split_part(dayweek,' ', 1) AS grn_day,
+CASE split_part(dayweek,' ', 1)
+  WHEN 'Monday' THEN '2015-04-06'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Tuesday' THEN '2015-04-07'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Wednesday' THEN '2015-04-08'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Thursday' THEN '2015-04-09'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Friday' THEN '2015-04-10'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Saturday' THEN '2015-04-11'::date + 7 * (right(dayweek, 1)::int)
+  WHEN 'Sunday' THEN '2015-04-12'::date + 7 * (right(dayweek, 1)::int)
+END AS grn_start, 
+'2' AS grn_weeks, -- I think they're all weekly.
+dayweek AS name
+FROM colac_otway;
