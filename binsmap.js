@@ -4,11 +4,23 @@ TODO:
 - special handling for the day after bin night - maybe it's not too late?
 - when you zoom in far you lose your marker
 - clickable areas - maybe instead of dragging marker
-- have layer control always open?
 - update spec to allow per-type info
 - add bookmarks like #wyndham, #tuesday
-- show suburb boundaries (per @mattcen)
 - "powered by OpenCouncilData tag"?
+- cookies to set your home for future visits
+- Google Calendar for your bin nights? I have no idea how to implement this.
+
+gold coast:
+http://data.gov.au/dataset/waste-and-recycling-collection-services/resource/015c15c9-2500-495d-80d5-151531a44f9a
+
+hobart:
+http://data.gov.au/dataset/city-of-hobart-kerbside-collection-general-waste/resource/ff7c886a-2a46-4051-91a4-c6c2c3f5a43f
+
+colac otway:
+http://data.gov.au/dataset/colac-otway-shire-waste-collection/resource/a7a98278-91a9-4df9-acc6-ab4bc29c3027
+
+Salisbury (SA):
+https://data.sa.gov.au/dataset/01679c85-ea70-4fda-94e7-1ba5c4718e09
 */
 var layer;
 var map;
@@ -23,7 +35,8 @@ var councilinfo = {
     'Wyndham': 'https://www.wyndham.vic.gov.au/waste/kerbside_collections',
     'Manningham': 'http://www.manningham.vic.gov.au/waste-and-recycling',
     'Golden Plains': 'http://www.goldenplains.vic.gov.au/garbageandrecycling',
-    'Ballarat': 'http://www.ballarat.vic.gov.au/ps/waste.aspx'
+    'Ballarat': 'http://www.ballarat.vic.gov.au/ps/waste.aspx',
+    'Colac Otway': 'http://www.colacotway.vic.gov.au/Page/page.asp?Page_Id=3278&h=0'
 }
 
 
