@@ -16,6 +16,7 @@ var zone = {};
 var tiles={};
 var zoneGeo;
 var locationMarker;
+var CHANGEOVERHOUR = 9; // If it's after this hour, then we're talking about tomorrow's bin night.
 
 var councilinfo = {
     'Geelong': 'http://www.geelongaustralia.com.au/residents/waste/default.aspx',
@@ -36,8 +37,8 @@ function isBinNight(startdate, weekinterval) {
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     //var today = new Date(now.getFullYear(), now.getMonth(), 14);
     var tomorrow = today;
-    // If it's after 8am, then we're talking about tomorrow's bin night.
-    if (now.getHours() > 8) {
+    
+    if (now.getHours() > CHANGEOVERHOUR) {
        tomorrow = new Date(today.getTime() + 86400000);
     }   
     // loading a UTC YYYY-MM-DD date means getting UTC midnight. We don't want that.
@@ -170,8 +171,10 @@ function checkLocation() {
         for (i=0; i < collections.length; i++) {
             c = collectionMeta[collections[i]];
             if (!text) {
+                var d = new Date();
+                d.setHours (d.getHours() - CHANGEOVERHOUR);
                 daynames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-                text = daynames[new Date().getDay()] +  " night is bin night!<br/>Put out your ";
+                text = daynames[d.getDay()] +  " night is bin night!<br/>Put out your ";
             }
             text += c[2].toLowerCase();
             if (i == collections.length - 2) {
