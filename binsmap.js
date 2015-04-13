@@ -70,27 +70,6 @@ function isBinNight(startdate, weekinterval) {
  
 }
 
-mystyle = function(f) {
-    if (!f.properties.rub_day) {
-        return { opacity: 0, fillOpacity: 0 }; // probably should be a filter
-    }
-    p = f.properties;
-    if (p.rub_start && isBinNight(p.rub_start, p.rub_weeks)) {
-        return { color: "red", fillColor: "red" }
-    } else if (p.rec_start && isBinNight(p.rec_start, p.rec_weeks)) {
-        return { color: "yellow", fillColor: "yellow" }
-    } else if (p.grn_start && isBinNight(p.grn_start, p.grn_weeks)) {
-        return { color: "green", fillColor: "green" }
-    } else{
-        return { 
-            color: '#333',
-            fillColor: '#eee',
-            opacity: 1,
-            weight: 1
-        };
-    }
-}
-
 var nottonight = {
     fillOpacity: 0,
     color: '#333',
@@ -101,13 +80,13 @@ var nottonight = {
 rubbishstyle = function(f) {
     p = f.properties;
     if (isBinNight(p.rub_start, p.rub_weeks)) {
-        return { color: "darkred", fillColor: "red", fillOpacity:0.7, weight: 2, }
+        return { color: "darkred", fillColor: "red", fillOpacity:0.5, weight: 2, }
     } else return nottonight;
 }
 recstyle = function(f) {
     p = f.properties;
     if (isBinNight(p.rec_start, p.rec_weeks)) {
-        return { color: "brown", fillColor: "yellow", fillOpacity:0.7, weight: 2 }
+        return { color: "brown", fillColor: "yellow", fillOpacity:0.5, weight: 2 }
     } else return nottonight;
 }
 greenstyle = function(f) {
@@ -117,19 +96,41 @@ greenstyle = function(f) {
     } else return nottonight;
 }
 
+function clickedAZone(e)  {
+    var ordinals = {'1': '', '2': 'second ', '3': 'third ', '4': 'fourth '};
+    p = e.target.feature.properties;
+    t = '<h5>' + p.source + ' ' + p.name + '</h5>';
+    if (p.rub_weeks)
+        t += '<b>Rubbish</b>: Every ' + ordinals[p.rub_weeks] + p.rub_day + '<br/>';
+    if (p.rec_weeks)
+        t += '<b>Recycling</b>: Every ' + ordinals[p.rec_weeks] + p.rec_day + '<br/>';
+    if (p.grn_weeks)
+        t += '<b>Green waste</b>: Every ' + ordinals[p.grn_weeks] + p.rec_day + '<br/>';
+    map.openPopup(L.popup().setLatLng(e.latlng).setContent(t));
+    locationMarker.setLatLng(e.latlng);
+    checkLocation();
+}
+
 function loadTopoJson(t) {
     zone['Rubbish'] = L.geoJson(zoneGeo, {
 
         style: rubbishstyle,
         filter: function(f) {
             return !!f.properties.rub_day;
+        },
+        onEachFeature: function(f, l) {
+            l.on('click', clickedAZone);
         }
         
     });
+    
     zone['Recycling'] = L.geoJson(zoneGeo, {
         style: recstyle,
         filter: function(f) {
             return !!f.properties.rec_day;
+        },
+        onEachFeature: function(f, l) {
+            l.on('click', clickedAZone);
         }
         
     });
@@ -137,6 +138,9 @@ function loadTopoJson(t) {
         style: greenstyle,
         filter: function(f) {
             return !!f.properties.grn_day;
+        },
+        onEachFeature: function(f, l) {
+            l.on('click', clickedAZone);
         }
         
     });
@@ -224,7 +228,7 @@ $(function() {
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
 
-    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tilelive/binzones/{z}/{x}/{y}.png?updated=2', { 
+    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=2', { 
         maxZoom: 18, attribution: attribution });
     tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=2', { 
         maxZoom: 18, attribution: attribution });
@@ -241,6 +245,7 @@ $(function() {
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
         checkLocation();
         loadTopoJson(topo);
+
         L.control.layers(tiles, zone,  {"collapsed": false}).addTo(map);
         zone['Rubbish'].addTo(map);
         //zone['Suburbs'].addTo(map);
