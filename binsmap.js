@@ -6,6 +6,9 @@ TODO:
 - clickable areas - maybe instead of dragging marker
 - have layer control always open?
 - update spec to allow per-type info
+- add bookmarks like #wyndham, #tuesday
+- show suburb boundaries (per @mattcen)
+- "powered by OpenCouncilData tag"?
 */
 var layer;
 var map;
@@ -167,7 +170,8 @@ function checkLocation() {
         for (i=0; i < collections.length; i++) {
             c = collectionMeta[collections[i]];
             if (!text) {
-                text = collectioninfo[c[0]][c[3]] + " night is bin night!<br/>Put out your ";
+                daynames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                text = daynames[new Date().getDay()] +  " night is bin night!<br/>Put out your ";
             }
             text += c[2].toLowerCase();
             if (i == collections.length - 2) {
