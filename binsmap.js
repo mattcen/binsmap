@@ -219,6 +219,8 @@ $(function() {
         maxZoom: 18, attribution: attribution });
     tiles['Mapbox'] = L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png', {
         attribution: 'Mapbox, OpenStreetMap'});
+    zone['Suburbs'] = L.tileLayer('http://115.146.94.49/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
+        attribution: 'Steve Bennett, OpenStreetMap'});
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 10);
     $.getJSON('export/allbins.topojson', null, function(topo) {
         //console.log(e);
@@ -226,8 +228,9 @@ $(function() {
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
         checkLocation();
         loadTopoJson(topo);
-        L.control.layers(tiles, zone).addTo(map);
+        L.control.layers(tiles, zone,  {"collapsed": false}).addTo(map);
         zone['Rubbish'].addTo(map);
+        //zone['Suburbs'].addTo(map);
     });
         
     map.locate();
