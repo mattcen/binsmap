@@ -236,8 +236,9 @@ $(function() {
         maxZoom: 18, attribution: attribution });
     tiles['Mapbox'] = L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png', {
         attribution: 'Mapbox, OpenStreetMap'});
-    zone['Suburbs'] = L.tileLayer('http://115.146.94.49/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
+    zone['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
+    zone['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 10);
     $.getJSON('export/allbins.topojson', null, function(topo) {
         //console.log(e);
