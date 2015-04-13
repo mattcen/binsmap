@@ -61,6 +61,8 @@
         height:100px;
         vertical-align:top;
         border:1px solid gray;*/
+        max-height: 180px;
+        overflow-y: auto;
     }
     p {
         font-family:sue-ellen-francisco, sans-serif;
@@ -118,24 +120,24 @@
 <title>OpenBinMap.org</title>
 </head>
 <body>
-    <div id="banner" class="container">
+    <div id="banner" class="container-fluid">
         <div id="locationstatus" class="row">
-            <div class="col-md-4">
+            <div class="col-sm-3">
                 <h1>Open Bin Map</h1>
 
                 <p id="statustext">Move the marker to where you live.</p>
             </div>
-            <div class="info rubbish col-md-3">
+            <div class="info rubbish col-sm-3">
                 <div class="icon rubbish" />
                 </div>
                 <p></p>
             </div>  
-            <div class="info recycling col-md-3">
+            <div class="info recycling col-sm-3">
                 <div class="icon recycling" />
                 </div>
                 <p></p>
             </div>  
-            <div class="info green col-md-3">
+            <div class="info green col-sm-3">
                 <div class="icon green" />
                 </div>
                 <p></p>
