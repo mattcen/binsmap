@@ -9,6 +9,9 @@ TODO:
 - "powered by OpenCouncilData tag"?
 - cookies to set your home for future visits
 - Google Calendar for your bin nights? I have no idea how to implement this.
+- restructure loading so database table is dissolved and we have structures like { 'rubbish': { 'weeks' : ..., daystill: ...} }
+  directly on the geojson leaflet layer.
+- fix google analytics - getting no data
 
 gold coast:
 http://data.gov.au/dataset/waste-and-recycling-collection-services/resource/015c15c9-2500-495d-80d5-151531a44f9a
@@ -40,15 +43,12 @@ var councilinfo = {
 }
 
 
-
-
-function isBinNight(startdate, weekinterval) {
-    if (!startdate || !weekinterval) {
-        return false;
+function daysTillBinNight(startdate, weekinterval) {
+   if (!startdate || !weekinterval) {
+        return undefined;
     }
     var now = new Date();
     var today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    //var today = new Date(now.getFullYear(), now.getMonth(), 14);
     var tomorrow = today;
     
     if (now.getHours() > CHANGEOVERHOUR) {
@@ -56,18 +56,18 @@ function isBinNight(startdate, weekinterval) {
     }   
     // loading a UTC YYYY-MM-DD date means getting UTC midnight. We don't want that.
     then = new Date(startdate.replace(/-/g, '/'));
-    if (then.getDay() === tomorrow.getDay()) {
-        // Math.floor to take care of possible 1-hour timezone shift.
-        // TODO: worry about interstate garbage zones. Maybe UTC is better...
-        weeks = Math.floor((tomorrow-then)/86400000)/7;
-        if (weeks % weekinterval=== 0) {
-            return true;
-        }
-        // probably next week, not today.
+    daysbetween = Math.floor((tomorrow-then)/86400000);
+    dayinterval = 7 * weekinterval;
+    daysTill = (dayinterval - daysbetween % (dayinterval)) % dayinterval ;
+    return daysTill;
 
+ }
+
+function isBinNight(startdate, weekinterval) {
+    if (!startdate || !weekinterval) {
+        return false;
     }
-    return false;
- 
+    return daysTillBinNight(startdate, weekinterval) === 0; 
 }
 
 var nottonight = {
@@ -111,16 +111,34 @@ function clickedAZone(e)  {
     checkLocation();
 }
 
+function processLayer(f, l) {
+    cs = { rubbish: 'rub', recycling: 'rec', green: 'grn' }
+    Object.keys(cs).forEach(function(k) {
+        p = f.properties;
+        if (!f.collection) f.collection = {};
+        f.collection[k] = {};
+        if (p[cs[k]+'_weeks']) {
+            f.collection[k].weeks = p[cs[k] + '_weeks'];
+            f.collection[k].start = p[cs[k] + '_start'];
+            f.collection[k].day =   p[cs[k] + '_day'];
+            f.collection[k].label = { rubbish: 'Rubbish', recycling: 'Recycling', green: 'Green waste' }[k];
+            f.collection[k].comment = p[cs[k] + '_cmt'];
+            f.collection[k].daysTill = daysTillBinNight(f.collection[k].start, f.collection[k].weeks);
+        }
+    });
+}
+
 function loadTopoJson(t) {
     zone['Rubbish'] = L.geoJson(zoneGeo, {
 
-        style: rubbishstyle,
         filter: function(f) {
             return !!f.properties.rub_day;
         },
         onEachFeature: function(f, l) {
             l.on('click', clickedAZone);
-        }
+            processLayer(f,l);
+        },
+        style: rubbishstyle
         
     });
     
@@ -131,6 +149,7 @@ function loadTopoJson(t) {
         },
         onEachFeature: function(f, l) {
             l.on('click', clickedAZone);
+            processLayer(f,l);
         }
         
     });
@@ -141,6 +160,7 @@ function loadTopoJson(t) {
         },
         onEachFeature: function(f, l) {
             l.on('click', clickedAZone);
+            processLayer(f,l);
         }
         
     });
@@ -148,76 +168,98 @@ function loadTopoJson(t) {
 
 }
 
+function collectionsAtMarker() {
+    var collections={}
+    var locationGeo = turf.point([locationMarker.getLatLng().lng, locationMarker.getLatLng().lat]);
+    zoneGeo.features.forEach(function(zone) {
+        //p = zone.properties;
+        if (!turf.inside(locationGeo, zone))
+            return;
+        //collections.push(zone.collection);
+        collections = zone.collection; // disallowing overlapping polygons here.
+    });
+
+    return collections;
+}
+
+
 function checkLocation() {
-    if (!locationMarker || !zoneGeo) {
-        return;
-    }
-    var collections=[];
-    var collectioninfo = {};
-    var hasdata = false;
-    $(".info").hide();
+
     try {
-        locationGeo = turf.point([locationMarker.getLatLng().lng, locationMarker.getLatLng().lat]);
-        zoneGeo.features.forEach(function(zone) {
-            p = zone.properties;
-            if (!turf.inside(locationGeo, zone))
-                return;
-            hasdata = true;
-            if (isBinNight(p.rub_start, p.rub_weeks)) {
-                collectioninfo.rubbish = p;
-            }
-            if (isBinNight(p.rec_start, p.rec_weeks)) {
-                collectioninfo.recycling = p;
-            }
-            if (isBinNight(p.grn_start, p.grn_weeks)) {
-                collectioninfo.green = p;
-            }
+
+        if (!locationMarker || !zoneGeo) {
+            return;
+        }
+        var hasdata = false;
+        $(".info").hide();
+        var collections = collectionsAtMarker();
+        var collectionsTonight = Object.keys(collections).filter(function(k) {
+            return collections[k].daysTill === 0;
         });
+
+        
+        if (collectionsTonight.length) {
+            /*var collectionMeta = {
+                rubbish: ['rubbish','rub_cmt', 'Rubbish bin', 'rub_day'], 
+                recycling: ['recycling','rec_cmt', 'Recycling bin', 'rec_day'], 
+                green: ['green','grn_cmt', 'Green waste', 'grn_day'] };*/
+            $(".info p").html("");
+            var text;
+            
+            for (i=0; i < collectionsTonight.length; i++) {
+                //c = collectionMeta[collectionsTonight[i]];
+                var cname = collectionsTonight[i];
+                var c = collections[cname];
+                if (!text) {
+                    var d = new Date();
+                    d.setHours (d.getHours() - CHANGEOVERHOUR);
+                    daynames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+                    text = daynames[d.getDay()] +  " night is bin night!<br/>Put out your ";
+                }
+                var binNames = { 'rubbish': 'Rubbish bin', 'recycling': 'Recycling bin', 'green': 'Green waste' };
+                text += binNames[cname].toLowerCase();
+                if (i < collectionsTonight.length - 2) {
+                    text += ', your ';
+                } else if (i == collectionsTonight.length - 2) {
+                    text += ' & your ';
+                } else {
+                    $("#statustext").html(text + "!");
+                }
+                $(".info." + cname).show();
+                comment = c.comment;
+                if (!comment) {
+                    comment = binNames[cname];
+                }
+                $(".info." + cname + " p").html(comment);
+                $(".info." + cname + " p").append('<br/><a href="' + councilinfo[c.source] +'">More info.</a>');
+            };
+
+            //alert ("It's bin night in " + zone.properties.source + "'s "+ zone.properties.name);
+        } else if (Object.keys(collections).length === 0) {
+            // If user lives in a no-data area, leave them with the 'move the marker' sign a bit longer.
+            if (locationMarker.manuallyset) {
+                $("#statustext").html("I have no idea if it's bin night.<br/> Ask your council to go to <a href='http://opencouncildata.org'>opencouncildata.org</a>.");
+            }
+        } else {
+            var soonest=999;
+            Object.keys(collections).forEach(function (d) {
+                if (collections[d].daysTill < soonest) {
+                    soonest = collections[d].daysTill;
+                    soonestcollection = d;
+                }
+            });
+            if (soonest === 1) {
+                $("#statustext").html("Relax. Bin night's <em>tomorrow</em> night!");
+            // todo: funny text if bin night was last night.
+            } else if (soonest === 999 || soonest === 0) {
+                
+                $("#statustext").html("Panic. This site is broken.");
+            } else {
+                $("#statustext").html("Relax. Bin night is " + soonest + " days away.");
+            }
+        }
     } catch (e) {
         console.log(e);
-    }
-    collections = Object.keys(collectioninfo);
-    if (collections.length) {
-        var collectionMeta = {
-            rubbish: ['rubbish','rub_cmt', 'Rubbish bin', 'rub_day'], 
-            recycling: ['recycling','rec_cmt', 'Recycling bin', 'rec_day'], 
-            green: ['green','grn_cmt', 'Green waste', 'grn_day'] };
-        $(".info p").html("");
-        var text;
-        //var text ="It's bin night!<br/>Put out your ";
-        for (i=0; i < collections.length; i++) {
-            c = collectionMeta[collections[i]];
-            if (!text) {
-                var d = new Date();
-                d.setHours (d.getHours() - CHANGEOVERHOUR);
-                daynames=['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
-                text = daynames[d.getDay()] +  " night is bin night!<br/>Put out your ";
-            }
-            text += c[2].toLowerCase();
-            if (i == collections.length - 2) {
-                text += ' & your ';
-            } else if (i < collections.length - 2) {
-                text += ', your ';
-            } else {
-                $("#statustext").html(text + "!");
-            }
-            $(".info." + c[0]).show();
-            comment = collectioninfo[c[0]][c[1]];
-            if (!comment) {
-                comment = c[2];
-            }
-            $(".info." + c[0] + " p").html(comment);
-            $(".info." + c[0] + " p").append('<br/><a href="' + councilinfo[collectioninfo[c[0]].source] +'">More info.</a>');
-        };
-
-        //alert ("It's bin night in " + zone.properties.source + "'s "+ zone.properties.name);
-    } else if (!hasdata) {
-        // If user lives in a no-data area, leave them with the 'move the marker' sign a bit longer.
-        if (locationMarker.manuallyset) {
-            $("#statustext").html("I have no idea if it's bin night.<br/> Ask your council to go to <a href='http://opencouncildata.org'>opencouncildata.org</a>.");
-        }
-    } else {
-        $("#statustext").html("Relax. It's not bin night!");
     }
     
 }
