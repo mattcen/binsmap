@@ -39,7 +39,8 @@ var councilinfo = {
     'Manningham': 'http://www.manningham.vic.gov.au/waste-and-recycling',
     'Golden Plains': 'http://www.goldenplains.vic.gov.au/garbageandrecycling',
     'Ballarat': 'http://www.ballarat.vic.gov.au/ps/waste.aspx',
-    'Colac Otway': 'http://www.colacotway.vic.gov.au/Page/page.asp?Page_Id=3278&h=0'
+    'Colac Otway': 'http://www.colacotway.vic.gov.au/Page/page.asp?Page_Id=3278&h=0',
+    'Moonee Valley': 'http://www.mvcc.vic.gov.au/for-residents/waste-and-recycling/collections.aspx'
 }
 
 
