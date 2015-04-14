@@ -21,7 +21,11 @@ ogr2ogr --config PG_USE_COPY YES -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG
 showcount ${file/.geojson}
 done
 
+
+
 ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 wyndham.kml -overwrite $TABLEOPTIONS -nln wyndham
+#ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 moonee_valley.kml -overwrite $TABLEOPTIONS -nln moonee_valley
+ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 mvcc_GarbageRecyclingHardWaste_region.shp -overwrite $TABLEOPTIONS -nln moonee_valley
 
 psql -d $DBNAME < mergebins.sql
 psql -d $DBNAME < cleanbins.sql

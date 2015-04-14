@@ -7,3 +7,6 @@ wget -O manningham.geojson 'http://data.gov.au/geoserver/manningham-waste-collec
 
 wget -O colac_otway.geojson 'http://data.gov.au/geoserver/colac-otway-shire-waste-collection/wfs?request=GetFeature&typeName=a7de2474_abb0_4e18_a631_d5550962c89e&outputFormat=json'
 
+#wget -O moonee_valley.kml 'https://www.dropbox.com/s/utqljv03xb7aj2s/MooneeValleyGarbage.kml?dl=1'
+wget -O moonee_valley.zip 'https://www.dropbox.com/s/em4o2wn6mlynk1o/MV_Garbage_Recycling_Hard_Waste.zip?dl=1'
+unzip moonee_valley.zip
