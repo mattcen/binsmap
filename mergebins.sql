@@ -140,7 +140,6 @@ the_geom,
 'Moonee Valley' AS source, 
 collection AS name,
 collecti00 AS rub_day,
-'1' as rub_weeks,
 CASE collecti00
   WHEN 'Monday' THEN '2015-04-06'::date
   WHEN 'Tuesday' THEN '2015-04-07'::date
@@ -148,8 +147,8 @@ CASE collecti00
   WHEN 'Thursday' THEN '2015-04-09'::date
   WHEN 'Friday' THEN '2015-04-10'::date
 END AS rub_start, 
+'1' as rub_weeks,
 collecti00 AS rec_day,
-'2' AS rec_weeks,
 -- Monday 13 April is green waste for Area 1
 CASE collecti00
   WHEN 'Monday' THEN '2015-03-30'::date + 7 * (collecti01::int)
@@ -158,13 +157,14 @@ CASE collecti00
   WHEN 'Thursday' THEN '2015-04-02'::date + 7 * (collecti01::int)
   WHEN 'Friday' THEN '2015-04-03'::date + 7 * (collecti01::int)
 END AS rec_start, 
+'2' AS rec_weeks,
 collecti00 AS grn_day,
-'2' AS grn_weeks,
 CASE collecti00
   WHEN 'Monday' THEN '2015-03-30'::date + 7 + 7 * (collecti01::int)
   WHEN 'Tuesday' THEN '2015-03-31'::date + 7 + 7 * (collecti01::int)
   WHEN 'Wednesday' THEN '2015-04-01'::date + 7 + 7 * (collecti01::int)
   WHEN 'Thursday' THEN '2015-04-02'::date + 7 + 7 * (collecti01::int)
   WHEN 'Friday' THEN '2015-04-03'::date + 7 + 7 * (collecti01::int)
-END AS grn_start
+END AS grn_start,
+'2' AS grn_weeks,
 FROM moonee_valley;

@@ -1,3 +1,4 @@
+\echo 'Running clean-up processes'
 UPDATE allbins
 SET rub_start=(regexp_matches(rub_sched,'(\d\d\d\d-\d\d-\d\d)'))[1]
 WHERE rub_start IS NULL;
