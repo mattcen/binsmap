@@ -166,5 +166,5 @@ CASE collecti00
   WHEN 'Thursday' THEN '2015-04-02'::date + 7 + 7 * (collecti01::int)
   WHEN 'Friday' THEN '2015-04-03'::date + 7 + 7 * (collecti01::int)
 END AS grn_start,
-'2' AS grn_weeks,
+'2' AS grn_weeks
 FROM moonee_valley;
