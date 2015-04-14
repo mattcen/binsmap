@@ -126,6 +126,7 @@ function processLayer(f, l) {
             f.collection[k].comment = p[cs[k] + '_cmt'];
             f.collection[k].daysTill = daysTillBinNight(f.collection[k].start, f.collection[k].weeks);
         }
+        f.collection[k].source = f.properties.source;
     });
 }
 
