@@ -284,7 +284,10 @@ $(function() {
     zone['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     zone['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
+    zone['No coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png', {
+     opacity: 0.5 });
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 10);
+
     $.getJSON('export/allbins.topojson', null, function(topo) {
         //console.log(e);
          
@@ -294,6 +297,7 @@ $(function() {
 
         L.control.layers(tiles, zone,  {"collapsed": false}).addTo(map);
         zone['Rubbish'].addTo(map);
+        zone['No coverage'].addTo(map);
         //zone['Suburbs'].addTo(map);
     });
         
