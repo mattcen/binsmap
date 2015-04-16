@@ -13,7 +13,6 @@ function showcount() {
 }
 
 date
-psql -d $DBNAME -c "drop table $TABLE;"
 
 pushd data
 
@@ -33,6 +32,7 @@ ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 corangamite/*.shp -
 popd
 
 psql -d $DBNAME < mergebins.sql
+showcount 
 psql -d $DBNAME < cleanbins.sql
 ./dumpbins.sh
 date
