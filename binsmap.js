@@ -241,7 +241,7 @@ function checkLocation() {
         } else if (Object.keys(collections).length === 0) {
             // If user lives in a no-data area, leave them with the 'move the marker' sign a bit longer.
             if (locationMarker.manuallyset) {
-                $("#statustext").html("I have no idea if it's bin night.");
+                $("#statustext").html("Your council's bin nights aren't open data");
                 $(".nocoverage").show();
             }
         } else {
@@ -285,7 +285,7 @@ $(function() {
     overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png', {
+    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=3', {
      opacity: 0.5 });
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 9);
 
