@@ -1,5 +1,5 @@
 body {
-    background-image:url('static/brickwall/brickwall.png');
+    background-image:url('brickwall/brickwall.png');
 }
 #map { 
     width: 100%;
@@ -57,16 +57,16 @@ blockquote {
 
 .icon.rubbish {
     /* https://www.flickr.com/photos/44015204@N02/4049374816/ */
-    background-image:url('static/rubbish2.png');
+    background-image:url('rubbish2.png');
 }
 .icon.recycling {
-    background-image:url('static/recycling.png');
+    background-image:url('recycling.png');
         /* http://pixabay.com/en/bin-can-recycle-trash-green-158679/ */
     }
 .icon.green {
-    /*background-image:url('static/greenwaste.png');*/
+    /*background-image:url('greenwaste.png');*/
         /* http://pixabay.com/p-297843/?no_redirect */
-    background-image:url('static/greenwaste3.png');
+    background-image:url('greenwaste3.png');
     margin-top: 2em;
         /* https://openclipart.org/detail/183676/dead-branches */
 }
