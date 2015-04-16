@@ -18,104 +18,25 @@
 
 </script>
 <!-- ## look at getting just TopoJSON later -->
-<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>
+<!--<script src='http://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.2.0/leaflet-omnivore.min.js'></script>-->
 <!-- ## todo get just the inside function -->
 <script src='http://api.tiles.mapbox.com/mapbox.js/plugins/turf/v2.0.0/turf.min.js'></script>
 
 <!-- another one. omnivore doesn't directly expose topojson object? -->
 <script src="http://d3js.org/topojson.v1.min.js"></script>
 
-<!-- Oh man another one. Shouldn't be necessary, it's already included in omnivore...-->
-<!--<script src='http://raw.githubusercontent.com/mapbox/corslite/master/corslite.js'></script>-->
 
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.min.css" />
 
 <!-- Latest compiled and minified JavaScript -->
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
-<style>
-    body {
-        background-image:url('static/brickwall/brickwall.png');
-    }
-    #map { 
-        width: 100%;
-        height: calc(100% - 220px);
-        position:absolute;
-    }
-    #banner {
-        height: 200px;
-        padding-top:1em;
+<link rel="stylesheet" href="static/binsmap.css" />
 
-    }
-    h1 {
-        margin-bottom:0;
-    }
-
-    .info {
-        /*display:inline-block;*/
-        /*width: 200px;
-        height:100px;
-        vertical-align:top;
-        border:1px solid gray;*/
-        max-height: 140px;
-        overflow-y: auto;
-    }
-    p {
-        font-family:sue-ellen-francisco, sans-serif;
-        font-size:20px;
-    }
-    #statustext {
-        font-size: 24px;
-    }
-    .info p {
-        display: table-cell;
-        padding:0.5em;
-    }
-
-    .icon {
-        width:70px;
-        height:70px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        display:table-cell;
-        float:left;
-        vertical-align:top;
-    }
-
-    .icon.rubbish {
-        /* https://www.flickr.com/photos/44015204@N02/4049374816/ */
-        background-image:url('static/rubbish2.png');
-    }
-    .icon.recycling {
-        background-image:url('static/recycling.png');
-            /* http://pixabay.com/en/bin-can-recycle-trash-green-158679/ */
-        }
-    .icon.green {
-        /*background-image:url('static/greenwaste.png');*/
-            /* http://pixabay.com/p-297843/?no_redirect */
-        background-image:url('static/greenwaste3.png');
-        margin-top: 2em;
-            /* https://openclipart.org/detail/183676/dead-branches */
-    }
-    #locationstatus {
-        height: 60px;
-    }
-
-    h1 {
-        font-family: jolly-lodger, sans-serif;
-        font-size: 56px;
-    }
-    .boilerplate p {
-        font-size: 10px;
-        font-family:revalia, sans-serif;
-        border-top: 1px solid lightgray;
-    }
-
-</style>
 <script src="//use.edgefonts.net/revalia;jolly-lodger;sue-ellen-francisco.js"></script>
 <title>OpenBinMap.org</title>
 </head>
