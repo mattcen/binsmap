@@ -195,6 +195,7 @@ function checkLocation() {
         }
         var hasdata = false;
         $(".info").hide();
+        $(".nocoverage").hide();
         var collections = collectionsAtMarker();
         var collectionsTonight = Object.keys(collections).filter(function(k) {
             return collections[k].daysTill === 0;
@@ -240,7 +241,8 @@ function checkLocation() {
         } else if (Object.keys(collections).length === 0) {
             // If user lives in a no-data area, leave them with the 'move the marker' sign a bit longer.
             if (locationMarker.manuallyset) {
-                $("#statustext").html("I have no idea if it's bin night.<br/> Ask your council to go to <a href='http://opencouncildata.org'>opencouncildata.org</a>.");
+                $("#statustext").html("I have no idea if it's bin night.");
+                $(".nocoverage").show();
             }
         } else {
             var soonest=999;
