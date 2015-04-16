@@ -285,18 +285,18 @@ $(function() {
     overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    overlays['No coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png', {
+    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png', {
      opacity: 0.5 });
-    map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 10);
+    map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 9);
 
     $.getJSON('export/allbins.topojson', null, function(topo) {
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
         checkLocation();
         loadTopoJson(topo);
 
-        L.control.layers(tiles, locationMarker,  {"collapsed": false}).addTo(map);
-        locationMarker['Rubbish'].addTo(map);
-        locationMarker['No coverage'].addTo(map);
+        L.control.layers(tiles, overlays,  {"collapsed": false}).addTo(map);
+        overlays['Rubbish'].addTo(map);
+        overlays['Coverage'].addTo(map);
     });
         
     map.locate();
