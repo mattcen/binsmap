@@ -168,3 +168,9 @@ CASE collecti00
 END AS grn_start,
 '2' AS grn_weeks
 FROM moonee_valley;
+
+\echo "Corangamite"
+INSERT INTO allbins(the_geom, source, rub_sched, rec_sched,grn_sched, name,info_url)
+SELECT the_geom, 'Corangamite', rub_sched, rec_sched, grn_sched,town,info_url
+FROM corangamite;
+
