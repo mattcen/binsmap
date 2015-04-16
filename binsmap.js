@@ -40,7 +40,8 @@ var councilinfo = {
     'Golden Plains': 'http://www.goldenplains.vic.gov.au/garbageandrecycling',
     'Ballarat': 'http://www.ballarat.vic.gov.au/ps/waste.aspx',
     'Colac Otway': 'http://www.colacotway.vic.gov.au/Page/page.asp?Page_Id=3278&h=0',
-    'Moonee Valley': 'http://www.mvcc.vic.gov.au/for-residents/waste-and-recycling/collections.aspx'
+    'Moonee Valley': 'http://www.mvcc.vic.gov.au/for-residents/waste-and-recycling/collections.aspx',
+    'Corangamite': 'http://www.corangamite.vic.gov.au/index.php/council-services/waste-management/kerbside-collection'
 }
 
 
@@ -272,7 +273,7 @@ $(function() {
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
 
-    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=2', { 
+    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=4', { 
         maxZoom: 18, attribution: attribution });
     tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=2', { 
         maxZoom: 18, attribution: attribution });
