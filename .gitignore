@@ -1,3 +1,4 @@
 *.*json
 *.kml
 node_modules/
+data/
