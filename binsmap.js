@@ -27,7 +27,7 @@ https://data.sa.gov.au/dataset/01679c85-ea70-4fda-94e7-1ba5c4718e09
 */
 var layer;
 var map;
-var zone = {};
+var overlays = {};
 var tiles={};
 var zoneGeo;
 var locationMarker;
@@ -132,7 +132,7 @@ function processLayer(f, l) {
 }
 
 function loadTopoJson(t) {
-    zone['Rubbish'] = L.geoJson(zoneGeo, {
+    overlays['Rubbish'] = L.geoJson(zoneGeo, {
 
         filter: function(f) {
             return !!f.properties.rub_day;
@@ -145,7 +145,7 @@ function loadTopoJson(t) {
         
     });
     
-    zone['Recycling'] = L.geoJson(zoneGeo, {
+    overlays['Recycling'] = L.geoJson(zoneGeo, {
         style: recstyle,
         filter: function(f) {
             return !!f.properties.rec_day;
@@ -156,7 +156,7 @@ function loadTopoJson(t) {
         }
         
     });
-    zone['Green waste'] = L.geoJson(zoneGeo, {
+    overlays['Green waste'] = L.geoJson(zoneGeo, {
         style: greenstyle,
         filter: function(f) {
             return !!f.properties.grn_day;
@@ -237,7 +237,6 @@ function checkLocation() {
                 $(".info." + cname + " p").append('<br/><a href="' + councilinfo[c.source] +'">More info.</a>');
             };
 
-            //alert ("It's bin night in " + zone.properties.source + "'s "+ zone.properties.name);
         } else if (Object.keys(collections).length === 0) {
             // If user lives in a no-data area, leave them with the 'move the marker' sign a bit longer.
             if (locationMarker.manuallyset) {
@@ -281,24 +280,21 @@ $(function() {
         maxZoom: 18, attribution: attribution });
     tiles['Mapbox'] = L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png', {
         attribution: 'Mapbox, OpenStreetMap'});
-    zone['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
+    overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
-    zone['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    zone['No coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png', {
+    overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
+    overlays['No coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png', {
      opacity: 0.5 });
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 10);
 
     $.getJSON('export/allbins.topojson', null, function(topo) {
-        //console.log(e);
-         
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
         checkLocation();
         loadTopoJson(topo);
 
-        L.control.layers(tiles, zone,  {"collapsed": false}).addTo(map);
-        zone['Rubbish'].addTo(map);
-        zone['No coverage'].addTo(map);
-        //zone['Suburbs'].addTo(map);
+        L.control.layers(tiles, locationMarker,  {"collapsed": false}).addTo(map);
+        locationMarker['Rubbish'].addTo(map);
+        locationMarker['No coverage'].addTo(map);
     });
         
     map.locate();
