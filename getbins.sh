@@ -14,5 +14,13 @@ unzip -o -d corangamite corangamite.zip
 
 wget -O moonee_valley.zip 'https://www.dropbox.com/s/em4o2wn6mlynk1o/MV_Garbage_Recycling_Hard_Waste.zip?dl=1'
 unzip -o -d moonee_valley moonee_valley.zip
+
+wget -O wyndham.geojson 'http://data.gov.au/geoserver/wyndham-city-trees/wfs?request=GetFeature&typeName=57bca56b_1b4c_48fa_824d_1b4b5cbf7ce7&outputFormat=json'
+
+wget -O hobsons_bay.geojson 'http://data.gov.au/geoserver/hobsons-bay-garbage-collection/wfs?request=GetFeature&typeName=d369f648_d885_47f5_844c_782d8c1a2e56&outputFormat=json'
+
+#wget -O gold_coast.geojson 'http://data.gov.au/geoserver/waste-and-recycling-collection-services/wfs?request=GetFeature&typeName=1b853228_5bc4_
+
+
 cd ..
 

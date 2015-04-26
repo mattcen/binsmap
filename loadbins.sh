@@ -18,7 +18,7 @@ pushd data
 
 for file in *.geojson; do
 echo "Loading $file"
-ogr2ogr --config PG_USE_COPY YES -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 $file -overwrite $TABLEOPTIONS -nln ${file/.geojson}
+ogr2ogr --config PG_USE_COPY YES -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 $file -overwrite $TABLEOPTIONS -nln ${file/.geojson} 2>&1 | grep -v '^ -->'
 showcount ${file/.geojson}
 done
 
