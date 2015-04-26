@@ -41,7 +41,8 @@ var councilinfo = {
     'Ballarat': 'http://www.ballarat.vic.gov.au/ps/waste.aspx',
     'Colac Otway': 'http://www.colacotway.vic.gov.au/Page/page.asp?Page_Id=3278&h=0',
     'Moonee Valley': 'http://www.mvcc.vic.gov.au/for-residents/waste-and-recycling/collections.aspx',
-    'Corangamite': 'http://www.corangamite.vic.gov.au/index.php/council-services/waste-management/kerbside-collection'
+    'Corangamite': 'http://www.corangamite.vic.gov.au/index.php/council-services/waste-management/kerbside-collection',
+    'Hobsons Bay': 'http://www.hobsonsbay.vic.gov.au/Environment_Waste/Waste_and_Recycling'
 }
 
 
