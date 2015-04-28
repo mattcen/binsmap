@@ -272,6 +272,13 @@ function checkLocation() {
 
 $(function() {
     $(".info").hide();
+
+    if (window.location.href.match("embed")) {
+      // cut down some chrome for embedding
+      $("#banner").hide();
+      $("#map").css("height","calc(100% - 36px)");
+    }
+
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
 
