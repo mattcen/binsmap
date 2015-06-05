@@ -42,7 +42,8 @@ var councilinfo = {
     'Colac Otway': 'http://www.colacotway.vic.gov.au/Page/page.asp?Page_Id=3278&h=0',
     'Moonee Valley': 'http://www.mvcc.vic.gov.au/for-residents/waste-and-recycling/collections.aspx',
     'Corangamite': 'http://www.corangamite.vic.gov.au/index.php/council-services/waste-management/kerbside-collection',
-    'Hobsons Bay': 'http://www.hobsonsbay.vic.gov.au/Environment_Waste/Waste_and_Recycling'
+    'Hobsons Bay': 'http://www.hobsonsbay.vic.gov.au/Environment_Waste/Waste_and_Recycling',
+    'Surf Coast': 'http://www.surfcoast.vic.gov.au/My_Property/Waste_Recycling'
 }
 
 
@@ -293,7 +294,7 @@ $(function() {
     overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=4', {
+    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=5', {
      opacity: 0.5 });
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 9);
 

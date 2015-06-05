@@ -19,6 +19,7 @@ wget -O wyndham.geojson 'http://data.gov.au/geoserver/wyndham-city-trees/wfs?req
 
 wget -O hobsons_bay.geojson 'http://data.gov.au/geoserver/hobsons-bay-garbage-collection/wfs?request=GetFeature&typeName=d369f648_d885_47f5_844c_782d8c1a2e56&outputFormat=json'
 
+wget -O surfcoast.geojson 'https://data.gov.au/dataset/6d6feae0-46df-4b5a-8dc9-83969d6a2eec/resource/1daa9c09-4e3e-4511-9485-ec662b498b46/download/SurfCoastShireGarbageCollectionZones.json'
 #wget -O gold_coast.geojson 'http://data.gov.au/geoserver/waste-and-recycling-collection-services/wfs?request=GetFeature&typeName=1b853228_5bc4_
 
 

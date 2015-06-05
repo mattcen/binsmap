@@ -51,6 +51,11 @@ INSERT INTO allbins(the_geom, source, rub_sched, rec_sched, grn_sched, name)
 SELECT the_geom, 'Hobsons Bay', replace(schedule, 'PW', 'P1W'), schedule0, schedule1, descriptio
 FROM hobsons_bay;
 
+\echo "Surf Coast"
+INSERT INTO allbins(the_geom, source, rub_day, rub_weeks, rub_start, rec_day, rec_weeks, rec_start, grn_day, grn_weeks, grn_start, info_url, name)
+SELECT the_geom, 'Surf Coast', rub_day, rub_weeks, rub_start, rec_day, rec_weeks, rec_start, grn_day, grn_weeks, grn_start, info_url, name
+FROM surfcoast;
+
 \echo "Wyndham"
 -- Area 9, Friday, Week 1, means:
 -- Rubbish: 17th  April
