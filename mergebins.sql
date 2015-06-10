@@ -23,6 +23,9 @@ CREATE TABLE allbins
   rub_weeks character varying,
   rec_weeks character varying,
   grn_weeks character varying,
+  rub_url character varying,
+  rec_url character varying,
+  grn_url character varying,
   CONSTRAINT allbins_pkey PRIMARY KEY (gid)
 );
 
@@ -55,6 +58,11 @@ FROM hobsons_bay;
 INSERT INTO allbins(the_geom, source, rub_day, rub_weeks, rub_start, rec_day, rec_weeks, rec_start, grn_day, grn_weeks, grn_start, info_url, name)
 SELECT the_geom, 'Surf Coast', rub_day, rub_weeks, rub_start, rec_day, rec_weeks, rec_start, grn_day, grn_weeks, grn_start, info_url, name
 FROM surfcoast;
+
+\echo "Alpine"
+INSERT INTO allbins(the_geom, source, rub_day, rub_weeks, rub_start, rub_url, name)
+SELECT the_geom, 'Alpine', rub_day, rub_weeks, rub_start, rub_url, name
+FROM alpine;
 
 \echo "Wyndham"
 -- Area 9, Friday, Week 1, means:

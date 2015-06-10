@@ -43,7 +43,8 @@ var councilinfo = {
     'Moonee Valley': 'http://www.mvcc.vic.gov.au/for-residents/waste-and-recycling/collections.aspx',
     'Corangamite': 'http://www.corangamite.vic.gov.au/index.php/council-services/waste-management/kerbside-collection',
     'Hobsons Bay': 'http://www.hobsonsbay.vic.gov.au/Environment_Waste/Waste_and_Recycling',
-    'Surf Coast': 'http://www.surfcoast.vic.gov.au/My_Property/Waste_Recycling'
+    'Surf Coast': 'http://www.surfcoast.vic.gov.au/My_Property/Waste_Recycling',
+    'Alpine': 'http://www.alpineshire.vic.gov.au/Page/Page.aspx?Page_Id=133'
 }
 
 
@@ -294,9 +295,9 @@ $(function() {
     overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=5', {
+    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=6', {
      opacity: 0.5 });
-    map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.81, 144.5], 9);
+    map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.7, 144.5], 8);
 
     $.getJSON('export/allbins.topojson', null, function(topo) {
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
