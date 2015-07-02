@@ -44,7 +44,8 @@ var councilinfo = {
     'Corangamite': 'http://www.corangamite.vic.gov.au/index.php/council-services/waste-management/kerbside-collection',
     'Hobsons Bay': 'http://www.hobsonsbay.vic.gov.au/Environment_Waste/Waste_and_Recycling',
     'Surf Coast': 'http://www.surfcoast.vic.gov.au/My_Property/Waste_Recycling',
-    'Alpine': 'http://www.alpineshire.vic.gov.au/Page/Page.aspx?Page_Id=133'
+    'Alpine': 'http://www.alpineshire.vic.gov.au/Page/Page.aspx?Page_Id=133',
+    'Casey': 'http://www.casey.vic.gov.au/environment-waste/waste-recycling/residential-waste/weekly-garbage-service'
 }
 
 
@@ -174,6 +175,28 @@ function loadTopoJson(t) {
 
 }
 
+function hasCollectionType(c, collectionType) {
+    if (!c[collectionType])
+        return false;
+    if (c[collectionType] === {})
+        return false;
+    if (Object.keys(c[collectionType]).length <= 1)
+        return false;
+    return true;
+
+}
+
+function mergeCollection(collections, c) {
+    var cc = ["rubbish", "recycling", "green"];
+    for (i = 0; i < cc.length; i++) {
+
+        if (!hasCollectionType(collections, cc[i])) {
+            collections[cc[i]] = c[cc[i]];
+        }
+    }
+    return collections;
+}
+
 function collectionsAtMarker() {
     var collections={}
     var locationGeo = turf.point([locationMarker.getLatLng().lng, locationMarker.getLatLng().lat]);
@@ -182,7 +205,8 @@ function collectionsAtMarker() {
         if (!turf.inside(locationGeo, zone))
             return;
         //collections.push(zone.collection);
-        collections = zone.collection; // disallowing overlapping polygons here.
+        //collections = zone.collection; // disallowing overlapping polygons here.
+        collections = mergeCollection(collections, zone.collection);
     });
 
     return collections;
@@ -284,11 +308,11 @@ $(function() {
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
 
-    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=4', { 
+    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=5', { 
         maxZoom: 18, attribution: attribution });
-    tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=2', { 
+    tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=3', { 
         maxZoom: 18, attribution: attribution });
-    tiles['Green waste'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-green/{z}/{x}/{y}.png?updated=2', { 
+    tiles['Green waste'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-green/{z}/{x}/{y}.png?updated=3', { 
         maxZoom: 18, attribution: attribution });
     tiles['Mapbox'] = L.tileLayer('https://{s}.tiles.mapbox.com/v3/examples.map-i87786ca/{z}/{x}/{y}.png', {
         attribution: 'Mapbox, OpenStreetMap'});

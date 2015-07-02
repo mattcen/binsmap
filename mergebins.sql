@@ -60,9 +60,15 @@ SELECT the_geom, 'Surf Coast', rub_day, rub_weeks, rub_start, rec_day, rec_weeks
 FROM surfcoast;
 
 \echo "Alpine"
-INSERT INTO allbins(the_geom, source, rub_day, rub_weeks, rub_start, rub_url, name)
-SELECT the_geom, 'Alpine', rub_day, rub_weeks, rub_start, rub_url, name
+INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url)
+SELECT the_geom, 'Alpine', name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url
 FROM alpine;
+
+\echo "Casey"
+INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, grn_day, grn_weeks, grn_start)
+SELECT the_geom, 'Casey', name, rub_day, '1', rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, grn_day, grn_weeks, grn_start
+FROM casey;
+
 
 \echo "Wyndham"
 -- Area 9, Friday, Week 1, means:
