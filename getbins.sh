@@ -22,7 +22,8 @@ wget -O hobsons_bay.geojson 'http://data.gov.au/geoserver/hobsons-bay-garbage-co
 wget -O surfcoast.geojson 'https://data.gov.au/dataset/6d6feae0-46df-4b5a-8dc9-83969d6a2eec/resource/1daa9c09-4e3e-4511-9485-ec662b498b46/download/SurfCoastShireGarbageCollectionZones.json'
 
 wget -O alpine.geojson 'https://data.gov.au/dataset/fdb733a7-5f75-4e28-9856-a741b4c02c59/resource/9b49d0c3-8d21-4636-bea2-904f181c57b5/download/Alpine-Shire-Council-Garbage-Collection-Zones.json'
-wget -O casey.geojson 'https://data.gov.au/dataset/680d16b8-630f-4d62-aaa9-baa21a24ca88/resource/c30722f2-01c2-401e-b41d-685a8a6eeb08/download/CaseyGarbageCollectionZones.geojson'
+wget -O casey.geojson 'https://data.gov.au/dataset/97448f62-be9b-40b4-8cc7-d062edf47aa7/resource/16402c3b-769d-4e38-b6eb-62e14757362f/download/CaseyGarbageCollectionZones.geojson'
+
 #wget -O gold_coast.geojson 'http://data.gov.au/geoserver/waste-and-recycling-collection-services/wfs?request=GetFeature&typeName=1b853228_5bc4_
 
 

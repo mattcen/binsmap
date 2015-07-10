@@ -66,7 +66,7 @@ FROM alpine;
 
 \echo "Casey"
 INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, grn_day, grn_weeks, grn_start)
-SELECT the_geom, 'Casey', name, rub_day, '1', rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, grn_day, grn_weeks, grn_start
+SELECT the_geom, 'Casey', 'Casey bins', rub_day, '1', rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, grn_day, grn_weeks, grn_start
 FROM casey;
 
 

@@ -107,11 +107,11 @@ function clickedAZone(e)  {
     p = e.target.feature.properties;
     t = '<h5>' + p.source + ' ' + p.name + '</h5>';
     if (p.rub_weeks)
-        t += '<b>Rubbish</b>: Every ' + ordinals[p.rub_weeks] + p.rub_day + '<br/>';
+        t += '<b>Rubbish</b>: Collected every ' + ordinals[p.rub_weeks] + p.rub_day + '<br/>';
     if (p.rec_weeks)
-        t += '<b>Recycling</b>: Every ' + ordinals[p.rec_weeks] + p.rec_day + '<br/>';
+        t += '<b>Recycling</b>: Collected every ' + ordinals[p.rec_weeks] + p.rec_day + '<br/>';
     if (p.grn_weeks)
-        t += '<b>Green waste</b>: Every ' + ordinals[p.grn_weeks] + p.rec_day + '<br/>';
+        t += '<b>Green waste</b>: Collected every ' + ordinals[p.grn_weeks] + p.rec_day + '<br/>';
     map.openPopup(L.popup().setLatLng(e.latlng).setContent(t));
     locationMarker.setLatLng(e.latlng);
     checkLocation();
@@ -319,7 +319,7 @@ $(function() {
     overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=6', {
+    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=7', {
      opacity: 0.5 });
     map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.7, 144.5], 8);
 
