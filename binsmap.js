@@ -45,8 +45,9 @@ var councilinfo = {
     'Hobsons Bay': 'http://www.hobsonsbay.vic.gov.au/Environment_Waste/Waste_and_Recycling',
     'Surf Coast': 'http://www.surfcoast.vic.gov.au/My_Property/Waste_Recycling',
     'Alpine': 'http://www.alpineshire.vic.gov.au/Page/Page.aspx?Page_Id=133',
-    'Casey': 'http://www.casey.vic.gov.au/environment-waste/waste-recycling/residential-waste/weekly-garbage-service'
-}
+    'Casey': 'http://www.casey.vic.gov.au/environment-waste/waste-recycling/residential-waste/weekly-garbage-service',
+    'Melbourne': 'https://www.melbourne.vic.gov.au/ForResidents/WasteRecyclingandNoise/householdgarbage/Pages/Collectiondays.aspx'
+};
 
 
 function daysTillBinNight(startdate, weekinterval) {

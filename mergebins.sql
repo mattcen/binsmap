@@ -72,7 +72,8 @@ FROM casey;
 \echo "Melbourne"
 INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, info_url, "desc", missed_ph)
 SELECT the_geom, 'Melbourne'        , name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, info_url, "desc", missed_ph
-FROM melbourne;
+FROM melbournell
+;
 
 
 \echo "Wyndham"
