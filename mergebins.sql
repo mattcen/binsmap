@@ -72,8 +72,12 @@ FROM casey;
 \echo "Melbourne"
 INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, info_url, "desc", missed_ph)
 SELECT the_geom, 'Melbourne'        , name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, info_url, "desc", missed_ph
-FROM melbournell
-;
+FROM melbourne;
+
+set datestyle='DMY,ISO';
+update melbourne
+set rub_start=rub_start::date, rec_start=rec_start::date;
+set datestyle='ISO';
 
 
 \echo "Wyndham"
