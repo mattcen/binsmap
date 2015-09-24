@@ -24,7 +24,7 @@ done
 
 
 
-ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 wyndham.kml -overwrite $TABLEOPTIONS -nln wyndham
+#ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 wyndham.kml -overwrite $TABLEOPTIONS -nln wyndham
 #ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 moonee_valley.kml -overwrite $TABLEOPTIONS -nln moonee_valley
 ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 moonee_valley/mvcc_GarbageRecyclingHardWaste_region.shp -overwrite $TABLEOPTIONS -nln moonee_valley
 ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 corangamite/*.shp -overwrite $TABLEOPTIONS -nln corangamite
