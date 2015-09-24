@@ -322,7 +322,7 @@ $(function() {
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
     overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=7', {
      opacity: 0.5 });
-    map = L.map('map', {layers: [tiles.Mapbox]}).setView([-37.7, 144.5], 8);
+    map = L.map('map', {layers: [tiles.Positron]}).setView([-37.7, 144.5], 8);
 
     $.getJSON('export/allbins.topojson', null, function(topo) {
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
