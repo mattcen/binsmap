@@ -12,22 +12,38 @@ CREATE TABLE allbins
   rub_cmt character varying,
   rec_cmt character varying,
   grn_cmt character varying,
+  hw_cmt character varying,
   info_url character varying,
   missed_ph character varying,
   rub_day character varying,
   rec_day character varying,
   grn_day character varying,
+  hw_day  character varying,
   rub_start character varying,
   rec_start character varying,
   grn_start character varying,
+  hw_start character varying,
   rub_weeks character varying,
   rec_weeks character varying,
   grn_weeks character varying,
+  hw_weeks  character varying,
   rub_url character varying,
   rec_url character varying,
   grn_url character varying,
+  hw_url character varying,
+  rub_dates character varying,
+  rec_dates character varying,
+  grn_dates character varying,
+  hw_dates character varying
+
   CONSTRAINT allbins_pkey PRIMARY KEY (gid)
 );
+
+\echo "Glenelg"
+INSERT INTO allbins(the_geom, source, "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates)--, hw_day, hw_weeks, hw_start, hw_dates)
+SELECT the_geom, 'Glenelg',           "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates--, hw_day, hw_weeks, hw_start, hw_dates
+FROM glenelg;
+
 
 \echo "Geelong"
 INSERT INTO allbins(the_geom, source, rub_sched, rec_sched, grn_sched, name, "desc", rub_cmt, rec_cmt, grn_cmt, info_url, missed_ph)
@@ -75,8 +91,9 @@ SELECT the_geom, 'Melbourne'        , name, rub_day, rub_weeks, rub_start, rub_u
 FROM melbourne;
 
 set datestyle='DMY,ISO';
-update melbourne
-set rub_start=rub_start::date, rec_start=rec_start::date;
+update allbins
+set rub_start=rub_start::date::varchar, rec_start=rec_start::date::varchar
+where source='Melbourne';
 set datestyle='ISO';
 
 

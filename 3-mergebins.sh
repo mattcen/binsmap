@@ -1,6 +1,6 @@
 DBNAME=bins
-psql -d $DBNAME < mergebins.sql
+psql -d $DBNAME < 3a-mergebins.sql
 showcount 
-psql -d $DBNAME < cleanbins.sql
+psql -d $DBNAME < 3b-cleanbins.sql
 date
 
