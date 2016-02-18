@@ -40,8 +40,8 @@ CREATE TABLE allbins
 );
 
 \echo "Glenelg"
-INSERT INTO allbins(the_geom, source, "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates)--, hw_day, hw_weeks, hw_start, hw_dates)
-SELECT the_geom, 'Glenelg',           "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates--, hw_day, hw_weeks, hw_start, hw_dates
+INSERT INTO allbins(the_geom, source, name, "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates)--, hw_day, hw_weeks, hw_start, hw_dates)
+SELECT the_geom, 'Glenelg',           name, "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates--, hw_day, hw_weeks, hw_start, hw_dates
 FROM glenelg;
 
 
