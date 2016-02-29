@@ -113,7 +113,7 @@ function clickedAZone(e)  {
     if (p.rec_weeks)
         t += '<b>Recycling</b>: Collected every ' + ordinals[p.rec_weeks] + p.rec_day + '<br/>';
     if (p.grn_weeks)
-        t += '<b>Green waste</b>: Collected every ' + ordinals[p.grn_weeks] + p.rec_day + '<br/>';
+        t += '<b>Green waste</b>: Collected every ' + ordinals[p.grn_weeks] + p.grn_day + '<br/>';
     map.openPopup(L.popup().setLatLng(e.latlng).setContent(t));
     locationMarker.setLatLng(e.latlng);
     checkLocation();
