@@ -39,6 +39,10 @@ CREATE TABLE allbins
   rec_desc character varying,
   grn_desc character varying,
   hw_desc character varying,
+  rub_scope character varying,
+  rec_scope character varying,
+  grn_scope character varying,
+  hw_scope character varying,
 
   CONSTRAINT allbins_pkey PRIMARY KEY (gid)
 );
