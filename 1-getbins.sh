@@ -1,4 +1,17 @@
 #!/bin/bash
+# Steps to add a new council:
+# - add the appropriate download and maybe unzip statement here
+# - (maybe add a statement to loadbins.sh if it's not geojson)
+# - add a merge statement to 3a-mergebins.sql
+# - add a source statement to binsmap.js
+# - update the coverage map on http://guru.cycletour.org:5002/#/project/openbins-nocoverage
+# - run the four numbered scripts
+
+
+
+
+
+
 mkdir data 2>/dev/null
 cd data
 wget -O southern_grampians.geojson 'https://data.gov.au/dataset/ed09e981-db25-4e7f-834e-79d3ca09eaf8/resource/3d7785e1-b5dc-4a01-8fbe-3296dfbe0e86/download/Southern-Grampians-Garbage-Collection.json'

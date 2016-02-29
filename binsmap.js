@@ -309,19 +309,19 @@ $(function() {
 
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
-
-    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=6', { 
+    var updated = '10';
+    tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=' + updated, { 
         maxZoom: 18, attribution: attribution });
-    tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=6', { 
+    tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=' + updated, { 
         maxZoom: 18, attribution: attribution });
-    tiles['Green waste'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-green/{z}/{x}/{y}.png?updated=6', { 
+    tiles['Green waste'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-green/{z}/{x}/{y}.png?updated=' + updated, { 
         maxZoom: 18, attribution: attribution });
     tiles['Positron'] = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
         attribution: 'CartoDB, OpenStreetMap'});
     overlays['Suburbs'] = L.tileLayer('http://guru.cycletour.org/tile/Suburbs/{z}/{x}/{y}.png?updated=1', {
         attribution: 'Steve Bennett, OpenStreetMap'});
     overlays['Tips and landfills'] = L.tileLayer('http://guru.cycletour.org/tile/openbinmap-national-db/{z}/{x}/{y}.png');
-    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=7', {
+    overlays['Coverage'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=' + updated, {
      opacity: 0.5 });
     map = L.map('map', {layers: [tiles.Positron]}).setView([-37.7, 144.5], 8);
 
