@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir data 2>/dev/null
 cd data
-wget -O southern_grampians.zip 'http://data.gov.au/geoserver/southern-grampians-garbage-collection-zones/wfs?request=GetFeature&typeName=ckan_ed09e981_db25_4e7f_834e_79d3ca09eaf8&outputFormat=json'
+wget -O southern_grampians.geojson 'http://data.gov.au/geoserver/southern-grampians-garbage-collection-zones/wfs?request=GetFeature&typeName=ckan_ed09e981_db25_4e7f_834e_79d3ca09eaf8&outputFormat=json'
 wget -O glenelg.zip 'http://data.gov.au/dataset/71378c48-256c-45b5-9aa8-a6898db5cded/resource/f5e8a03d-ed7b-4607-84eb-3643a8f9b42d/download/Glenelg-Garbage-Collection-Zones.zip'
 unzip -o -d glenelg glenelg.zip
 wget -O ballarat.geojson 'http://data.gov.au/geoserver/ballarat-garbage-collection/wfs?request=GetFeature&typeName=4a7a3e5b_a20c_431e_bd21_ada983b0566f&outputFormat=json'
@@ -17,7 +17,7 @@ unzip -o -d corangamite corangamite.zip
 wget -O moonee_valley.zip 'https://www.dropbox.com/s/em4o2wn6mlynk1o/MV_Garbage_Recycling_Hard_Waste.zip?dl=1'
 unzip -o -d moonee_valley moonee_valley.zip
 
-wget -O wyndham.geojson 'http://data.gov.au/geoserver/wyndham-city-trees/wfs?request=GetFeature&typeName=57bca56b_1b4c_48fa_824d_1b4b5cbf7ce7&outputFormat=json'
+wget -O wyndham.geojson 'http://data.gov.au/dataset/c1b391aa-2990-4f12-9b3d-31ef9f72e24e/resource/407406a6-0a65-4819-92ce-0e37917b593d/download/wasteboundary2.geojson'
 
 wget -O hobsons_bay.geojson 'http://data.gov.au/geoserver/hobsons-bay-garbage-collection/wfs?request=GetFeature&typeName=d369f648_d885_47f5_844c_782d8c1a2e56&outputFormat=json'
 
