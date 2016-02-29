@@ -90,7 +90,7 @@ h1 {
 }
 
 .ocdlogo {
-    background-image:url('http://opencouncildata.org/powered_by_opencouncildata.png');
+    background-image:url('powered_by_opencouncildata.png');
     width:100px;
     height:23px;
     background-size:contain;
