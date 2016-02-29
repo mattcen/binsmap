@@ -1,7 +1,7 @@
 #!/bin/bash
 mkdir data 2>/dev/null
 cd data
-wget -O southern_grampians.geojson 'http://data.gov.au/geoserver/southern-grampians-garbage-collection-zones/wfs?request=GetFeature&typeName=ckan_ed09e981_db25_4e7f_834e_79d3ca09eaf8&outputFormat=json'
+wget -O southern_grampians.geojson 'https://data.gov.au/dataset/ed09e981-db25-4e7f-834e-79d3ca09eaf8/resource/3d7785e1-b5dc-4a01-8fbe-3296dfbe0e86/download/Southern-Grampians-Garbage-Collection.json'
 wget -O glenelg.zip 'http://data.gov.au/dataset/71378c48-256c-45b5-9aa8-a6898db5cded/resource/f5e8a03d-ed7b-4607-84eb-3643a8f9b42d/download/Glenelg-Garbage-Collection-Zones.zip'
 unzip -o -d glenelg glenelg.zip
 wget -O ballarat.geojson 'http://data.gov.au/geoserver/ballarat-garbage-collection/wfs?request=GetFeature&typeName=4a7a3e5b_a20c_431e_bd21_ada983b0566f&outputFormat=json'
