@@ -14,6 +14,7 @@
 
 mkdir data 2>/dev/null
 cd data
+wget -O northern_grampians.geojson 'http://data.gov.au/geoserver/ngsc-garbage-collection-zones/wfs?request=GetFeature&typeName=ckan_fa3c31f9_008d_4112_90c0_8d7c02fa95fc&outputFormat=json'
 wget -O southern_grampians.geojson 'https://data.gov.au/dataset/ed09e981-db25-4e7f-834e-79d3ca09eaf8/resource/3d7785e1-b5dc-4a01-8fbe-3296dfbe0e86/download/Southern-Grampians-Garbage-Collection.json'
 wget -O glenelg.zip 'http://data.gov.au/dataset/71378c48-256c-45b5-9aa8-a6898db5cded/resource/f5e8a03d-ed7b-4607-84eb-3643a8f9b42d/download/Glenelg-Garbage-Collection-Zones.zip'
 unzip -o -d glenelg glenelg.zip
