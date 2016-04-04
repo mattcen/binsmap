@@ -309,7 +309,7 @@ $(function() {
 
     
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
-    var updated = '10';
+    var updated = '11';
     tiles['Rubbish'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-rubbish/{z}/{x}/{y}.png?updated=' + updated, { 
         maxZoom: 18, attribution: attribution });
     tiles['Recycling'] = L.tileLayer('http://guru.cycletour.org/tile/openbins-recycling/{z}/{x}/{y}.png?updated=' + updated, { 
