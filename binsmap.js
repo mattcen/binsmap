@@ -311,7 +311,7 @@ $(function() {
     attribution = 'Steve Bennett + Geelong, Wyndham, Golden Plains, Ballarat, Manningham councils';
     var updated = '11';
     
-    tiles['Positron'] = L.tileLayer('//{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+    tiles['Basemap'] = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
         attribution: 'CartoDB, OpenStreetMap'});
     
     /*
@@ -327,7 +327,7 @@ $(function() {
     overlays['Coverage'] = L.tileLayer('//guru.cycletour.org/tile/openbins-nocoverage/{z}/{x}/{y}.png?updated=' + updated, {
      opacity: 0.5 });
     */
-    map = L.map('map', {layers: [tiles.Positron]}).setView([-37.7, 144.5], 8);
+    map = L.map('map', {layers: [tiles.Basemap]}).setView([-37.7, 144.5], 8);
 
     $.getJSON('export/allbins.topojson', null, function(topo) {
         zoneGeo = topojson.feature(topo, topo.objects.allbins);
