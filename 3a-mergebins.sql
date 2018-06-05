@@ -115,6 +115,11 @@ set rub_start=rub_start::date::varchar, rec_start=rec_start::date::varchar
 where source='Melbourne';
 set datestyle='ISO';
 
+\echo "Whittlesea"
+INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, info_url, "desc", missed_ph)
+SELECT the_geom, 'Whittlesea'        , name, rub_day, rub_weeks, rub_start, rub_url, rec_day, rec_weeks, rec_start, rec_url, info_url, "desc", missed_ph
+FROM whittlesea;
+
 
 \echo "Wyndham"
 -- Area 9, Friday, Week 1, means:

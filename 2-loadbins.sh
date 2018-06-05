@@ -32,5 +32,6 @@ done
 ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 moonee_valley/mvcc_GarbageRecyclingHardWaste_region.shp -overwrite $TABLEOPTIONS -nln moonee_valley
 ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 corangamite/*.shp -overwrite $TABLEOPTIONS -nln corangamite
 ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 melbourne/*.shp -overwrite $TABLEOPTIONS -nln melbourne
+ogr2ogr -f "PostgreSQL" PG:"dbname=$DBNAME" -t_srs EPSG:3857 whittlesea/*.shp -overwrite $TABLEOPTIONS -nln whittlesea
 
 popd

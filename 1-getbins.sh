@@ -45,6 +45,9 @@ wget -O melbourne.zip 'https://data.melbourne.vic.gov.au/api/geospatial/dmpt-2xd
 unzip -o -d melbourne melbourne.zip
 #wget -O gold_coast.geojson 'http://data.gov.au/geoserver/waste-and-recycling-collection-services/wfs?request=GetFeature&typeName=1b853228_5bc4_
 
+rm whittlesea/*.zip
+wget -O whittlesea.zip 'https://data.gov.au/dataset/59083f37-5f22-48bf-8210-a0d3a26d7084/resource/7432e479-a80f-46bc-a02a-1c539e937611/download/whittleseagarbagecollectionzones20170517.zip'
+unzip -o -d whittlesea whittlesea.zip
 
 cd ..
 
