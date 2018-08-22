@@ -22,6 +22,7 @@ wget -O ballarat.geojson 'http://data.gov.au/geoserver/ballarat-garbage-collecti
 wget -O geelong.geojson 'http://data.gov.au/geoserver/geelong-garbage-collection/wfs?request=GetFeature&typeName=4f2d6646_d246_433c_b537_ed0b09273cbb&outputFormat=json'
 wget -O golden_plains.geojson 'http://data.gov.au/dataset/3ce108f9-ccbd-4ff9-8672-956d54dfe384/resource/c55095d7-1252-4722-83de-bde653335787/download/gpsgarbage.json'
 wget -O manningham.geojson 'http://data.gov.au/geoserver/manningham-waste-collection/wfs?request=GetFeature&typeName=adb30341_4703_4050_b18b_5288e3cb0ba7&outputFormat=json'
+wget -O glen_eira.geojson 'https://data.gov.au/dataset/04ed349c-ee8c-4c83-831d-b0a3ed637ab8/resource/61459b87-5135-4e6b-9d72-c97937f7744f/download/garbagecollectionzones.json'
 
 wget -O colac_otway.geojson 'http://data.gov.au/geoserver/colac-otway-shire-waste-collection/wfs?request=GetFeature&typeName=a7de2474_abb0_4e18_a631_d5550962c89e&outputFormat=json'
 wget -O corangamite.zip 'http://data.gov.au/dataset/327f1c0a-248e-4e8a-96d2-01f905315a03/resource/dd692107-517b-4418-bf45-76dcbdc83b0f/download/wastecollection.zip'
