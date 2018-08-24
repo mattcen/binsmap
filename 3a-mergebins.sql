@@ -63,6 +63,10 @@ INSERT INTO allbins(the_geom, source, name, "desc", rub_day, rub_weeks, rub_star
 SELECT the_geom, 'Glenelg',           name, "desc", rub_day, rub_weeks, rub_start, rub_dates, rec_day, rec_weeks, rec_start, rec_dates, grn_day, grn_weeks, grn_start, grn_dates--, hw_day, hw_weeks, hw_start, hw_dates
 FROM glenelg;
 
+\echo "Glen Eira"
+INSERT INTO allbins(the_geom, source, name, rub_day, rub_weeks, rub_start, rub_dates, rub_scope, rec_day, rec_weeks, rec_start, rec_dates, rec_scope, grn_day, grn_weeks, grn_start, grn_dates, grn_scope, hw_scope, info_url, missed_ph)--, hw_day, hw_weeks, hw_start, hw_dates)
+SELECT the_geom, 'Glen Eira',         name, rub_day, rub_weeks, rub_start, rub_dates, rub_scope, rec_day, rec_weeks, rec_start, rec_dates, rec_scope, grn_day, grn_weeks, grn_start, grn_dates, grn_scope, hw_scope, info_url, missed_ph--, hw_day, hw_weeks, hw_start, hw_dates
+FROM glen_eira;
 
 \echo "Geelong"
 INSERT INTO allbins(the_geom, source, rub_sched, rec_sched, grn_sched, name, "desc", rub_cmt, rec_cmt, grn_cmt, info_url, missed_ph)
